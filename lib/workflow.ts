@@ -1,6 +1,7 @@
 import { Client as WorkflowClient } from "@upstash/workflow";
 import { Client as QStashClient, resend } from "@upstash/qstash";
 import config from "@/lib/config";
+import emailjs from '@emailjs/browser'
 
 export const workflowClient = new WorkflowClient({
   baseUrl: config.env.upstash.qstashUrl,
@@ -33,3 +34,26 @@ export const sendEmail = async ({
     },
   });
 };
+
+// the above logic used resend
+//  however its a paid service so im using emailjs rather
+
+// const sendEmail = async (templateParams: any) => {
+//   try {
+//     const serviceID = ''
+//     const templateID = ''
+//     const userID = ''
+
+
+//     // send email
+//     const response = await emailjs.send(
+//       serviceID, 
+//       templateID, 
+//       templateParams,
+//       userID);
+//       console.log('Email sent successfully:', response.status, response.text);
+//   } catch (error) {
+//     console.error('error sending email: ', error);
+//     throw new Error('Failed to send email');
+//   }
+// };
